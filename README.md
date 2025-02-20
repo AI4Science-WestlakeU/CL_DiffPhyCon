@@ -1,101 +1,87 @@
-# project_module
-This is a project module for a new project, which inludes the file framework, DL pipline, RM.md example and some useful utils.
-**To be updating now.**
+# CL-DiffPhyCon: Closed-loop Diffusion Control of Complex Physical Systems (ICLR 2025)
 
-Any questions, please contact by zhangtao@westlake.edu.cn
+[Paper](https://openreview.net/pdf?id=PiHGrTTnvb) | [arXiv](https://arxiv.org/pdf/2408.03124) 
+<!-- | [Poster](https://github.com/AI4Science-WestlakeU/cindm/blob/main/assets/CinDM_poster.pdf)  -->
+<!-- | [Tweet](https://twitter.com/tailin_wu/status/1747259448635367756)  -->
 
-# paper_name
+Official repo for the paper [CL-DiffPhyCon: Closed-loop Diffusion Control of Complex Physical Systems](https://openreview.net/pdf?id=PiHGrTTnvb).<br />
+[Long Wei*](https://longweizju.github.io/), [Haodong Feng*](https://scholar.google.com/citations?user=0GOKl_gAAAAJ&hl=en), [Yuchen Yang](), [Ruiqi Feng](https://weenming.github.io/),  [Peiyan Hu](https://peiyannn.github.io/), [Xiang Zheng](), [Tao Zhang](https://zhangtao167.github.io), [Dixia Fan](https://en.westlake.edu.cn/faculty/dixia-fan.html), [Tailin Wu](https://tailin.org/)<br />
+ICLR 2025. 
 
-[Paper](URL) | [arXiv](URL) | [Poster](URL) | [Tweet](URL) 
+We propose a diffusion method with an asynchronous denoising schedule for physical systems control tasks. It achieves closed-loop control with a significant speedup of sampling efficiency. Specifically, it has the following features:
 
-Official repo for the paper [Paper Name](URL).<br />
-[Author name](https://zhangtao167.github.io)
-ICLR 2024 **spotlight**. 
+- Efficient Sampling: CL-DiffPhyCon significantly reduces the computational cost during the sampling process through an asynchronous denoising framework. Compared with existing diffusion-based control methods, CL-DiffPhyCon can generate high-quality control signals in a much shorter time.
 
-We propose a novel XXX.
+- Closed-loop Control: CL-DiffPhyCon enables closed-loop control, adjusting strategies according to real-time environmental feedback. It outperforms open-loop diffusion-based planning methods in control effectiveness.
 
-Framework of paper:
-<a href="url"><img src="/assets/fig1.png" align="center" width="600" ></a>
+- Accelerated Sampling: CL-DiffPhyCon can integrate with acceleration techniques such as [DDIM](https://arxiv.org/abs/2010.02502). It further enhances control efficiency while keeping the control effect stable.
 
-## Installation
+Framework of CL-DiffPhyCon:
 
+<a href="url"><img src="https://github.com/AI4Science-WestlakeU/close_loop_diffcon/blob/main/assets/figure1.png" align="center" width="800" ></a>
 
-1. Install dependencies.
+This is a follow-up work of our previous DiffPhyCon (NeurIPS 2024): [Paper](https://openreview.net/pdf?id=MbZuh8L0Xg) | [Code](https://github.com/AI4Science-WestlakeU/diffphycon).
 
-```
-conda create -n ENV_NAME python=3.x.x
-```
+# Installation
 
-Install dependencies:
-```
-pip install -r requirements.txt
-pip install -e .
-```
-
-Replace the directory name `standard_repo` with your project name and the corresponding 
-directory name in setup.py, .gitignore, .
-
-#  file structure
-- project_module
-  - dataset                 # datasets ready for training or analysis
-  - docs                   # documentation files
-  - $project_name
-    - data                    # data class and dataloader used in the project
-      - data_demo.py         # A demo code for data class
-    - config                  # configuration files for training and inference
-    - inference               # scripts for model inference
-    - model                   # model definitions
-    - train                   # Scripts and configuration files for training models
-      - train_demo.py         # A demo code for training
-    - utils                   # Utility scripts and helper functions
-      - utils.py              # A demo code for utility functions
-    - tests                   # unit tests for the project
-  - results                 # results and logs from training and inference
-  - scripts                   # bash scripts for running training and inference
-  - .gitignore              # Specifies intentionally untracked files to ignore by git
-  - filepath.py             # Python script for file path handling
-  - README.md               # Markdown file with information about the project for users
-  - reproducibility_statement.md # Markdown file with statements on reproducibility practices
-  - requirements.txt        # Text file with a list of dependencies to install
-
-
-## Dataset and checkpoint
-
-All the dataset can be downloaded in this [this link](URL). Checkpoints are in [this link](URl). Both dataset.zip and checkpoint_path.zip should be decompressed to the root directory of this project.
-
-
-## Training
-
-Below we provide example commands for training the diffusion model/forward model.
-
-### training model
-
+Run the following commonds to install dependencies. In particular, when run the smoke control task, the python version must be 3.8 due to the requirement of the Phiflow software.
 
 ```code
-python train_1d.py 
+conda env create -f environment.yml
+conda activate DiffPhyCon
 ```
 
+# Dataset and checkpoints
+## Dataset
+The checkpoints and test datasets of our CL-DiffPhyCon on both tasks (1D Burgers and 2D smoke) can be downloaded in [link](https://drive.google.com/drive/folders/1moLdtqmvmAU8FoWt6ELWOTXT0tPuY-qJ). To run the following training and inference scripts locally, replace the path names in the following scripts by your local paths.
+<!-- Because the training dataset in the 2D experiment is over 100GB, it is not contained in this link. -->
 
-## inference
+# Training:
+## 1D Burgers' Equation Control:
 
-Here we provide commands for inference using the trained model:
-
-### model 1
+In the scripts_1d/ folder, run the following two scripts to train the synchronous and asynchronous diffusion models, respectively:
 ```code
-python inference.py
+bash train_syn.sh
+bash train_asyn.sh
 ```
 
+## 2D Smoke Control:
 
-## Related Projects
-  
-* [NAME](URL) (ICLR 2023 spotlight): brief description of the project.
+Similarly, in the scripts_2d/ folder, run the following two scripts:
+```code
+bash train_syn.sh
+bash train_asyn.sh
+```
 
-Numerous practices and standards were adopted from [CinDM](https://github.com/AI4Science-WestlakeU/cindm).
+# Inference:
+## 1D Burgers' Equation Control:
+In the scripts_1d/ folder, run the following script for closed-loop diffusion control:
+```
+bash inf_asyn.sh
+```
+
+## 2D Smoke Control:
+### CL-DiffPhyCon
+In the scripts_2d/ folder, run the following script for closed-loop diffusion control:
+```
+bash inf_asyn.sh
+```
+
+And then run evaluate_2d.py to evaluate the inference results
+```
+python evaluate_2d.py
+```
+
 ## Citation
 If you find our work and/or our code useful, please cite us via:
 
 ```bibtex
 @inproceedings{
-    ...
+wei2025cldiffphycon,
+title={{CL}-DiffPhyCon: Closed-loop Diffusion Control of Complex Physical Systems},
+author={Long Wei and Haodong Feng and Yuchen Yang and Ruiqi Feng and Peiyan Hu and Xiang Zheng and Tao Zhang and Dixia Fan and Tailin Wu},
+booktitle={The Thirteenth International Conference on Learning Representations},
+year={2025},
+url={https://openreview.net/forum?id=PiHGrTTnvb}
 }
 ```
