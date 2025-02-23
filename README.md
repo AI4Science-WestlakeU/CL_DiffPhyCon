@@ -20,7 +20,7 @@ Framework of CL-DiffPhyCon:
 
 <a href="url"><img src="https://github.com/AI4Science-WestlakeU/close_loop_diffcon/blob/main/assets/figure1.png" align="center" width="800" ></a>
 
-This is a follow-up work of our previous DiffPhyCon (NeurIPS 2024): [Paper](https://openreview.net/pdf?id=MbZuh8L0Xg) | [Code](https://github.com/AI4Science-WestlakeU/diffphycon).
+This is a follow-up work of our previous DiffPhyCon (NeurIPS 2024): [Paper](https://openreview.net/forum?id=MbZuh8L0Xg) | [Code](https://github.com/AI4Science-WestlakeU/diffphycon).
 
 # Installation
 
