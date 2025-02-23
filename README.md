@@ -5,7 +5,7 @@
 <!-- | [Tweet](https://twitter.com/tailin_wu/status/1747259448635367756)  -->
 
 Official repo for the paper [CL-DiffPhyCon: Closed-loop Diffusion Control of Complex Physical Systems](https://openreview.net/pdf?id=PiHGrTTnvb).<br />
-[Long Wei*](https://longweizju.github.io/), [Haodong Feng*](https://scholar.google.com/citations?user=0GOKl_gAAAAJ&hl=en), [Yuchen Yang](), [Ruiqi Feng](https://weenming.github.io/),  [Peiyan Hu](https://peiyannn.github.io/), [Xiang Zheng](), [Tao Zhang](https://zhangtao167.github.io), [Dixia Fan](https://en.westlake.edu.cn/faculty/dixia-fan.html), [Tailin Wu](https://tailin.org/)<br />
+[Long Wei*](https://longweizju.github.io/), [Haodong Feng*](https://scholar.google.com/citations?user=0GOKl_gAAAAJ&hl=en), [Yuchen Yang](), [Ruiqi Feng](https://weenming.github.io/),  [Peiyan Hu](https://peiyannn.github.io/), [Xiang Zheng](), [Tao Zhang](https://zhangtao167.github.io), [Dixia Fan](https://en.westlake.edu.cn/faculty/dixia-fan.html), [Tailin Wu†](https://tailin.org/)<br />
 ICLR 2025. 
 
 We propose a diffusion method with an asynchronous denoising schedule for physical systems control tasks. It achieves closed-loop control with a significant speedup of sampling efficiency. Specifically, it has the following features:
