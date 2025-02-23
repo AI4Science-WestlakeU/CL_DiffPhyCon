@@ -1,6 +1,6 @@
 # CL-DiffPhyCon: Closed-loop Diffusion Control of Complex Physical Systems (ICLR 2025)
 
-[Paper](https://openreview.net/pdf?id=PiHGrTTnvb) | [arXiv](https://arxiv.org/pdf/2408.03124) 
+[Paper](https://openreview.net/forum?id=PiHGrTTnvb) | [arXiv](https://arxiv.org/pdf/2408.03124) 
 <!-- | [Poster](https://github.com/AI4Science-WestlakeU/cindm/blob/main/assets/CinDM_poster.pdf)  -->
 <!-- | [Tweet](https://twitter.com/tailin_wu/status/1747259448635367756)  -->
 
