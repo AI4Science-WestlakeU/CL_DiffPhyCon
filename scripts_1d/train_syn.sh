@@ -1,5 +1,5 @@
 python ../train/train_1d.py \
-    --exp_id time_vary_twomodel_syn \
-    --dataset free_u_f_1e5_seed0 \
+    --exp_id model_syn \
     --is_condition_u0 True \
     --is_condition_uT True \
+    --train_data_path /usr/train_data

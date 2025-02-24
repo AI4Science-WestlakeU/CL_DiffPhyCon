@@ -28,7 +28,7 @@ Run the following commonds to install dependencies. In particular, when run the 
 
 ```code
 conda env create -f environment.yml
-conda activate DiffPhyCon
+conda activate base
 ```
 
 # Dataset and checkpoints

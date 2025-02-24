@@ -24,6 +24,8 @@ parser.add_argument('--date_time', default=datetime.today().strftime('%Y-%m-%d')
                     help='date for the experiment folder')
 parser.add_argument('--dataset', default='free_u_f_1e5', type=str,
                     help='dataset name')
+parser.add_argument('--train_data_path', default='/data', type=str,
+                    help='train data path')
 parser.add_argument('--train_num_steps', default=100000, type=int,
                     help='train_num_steps')
 parser.add_argument('--checkpoint_interval', default=10000, type=int,
@@ -77,9 +79,9 @@ parser.add_argument('--asynch_inference_mode', action='store_true',
 parser.add_argument('--is_init_model', default=True, type=bool, 
                     help="if true, the original DDPM, if False, ours new.")
 
-def get_dataset(dataset='free_u_f_1e5'):
+def get_dataset(train_data_path):
     return DiffusionDataset(
-        f'/usr/{dataset}/train', 
+        train_data_path, 
         preprocess=get_burgers_preprocess( 
             rescaler=RESCALER, 
             stack_u_and_f=True, 
@@ -201,7 +203,7 @@ if __name__ == "__main__":
     except Exception as e:
         args = parser.parse_args()
     try:
-        dataset = get_dataset(args.dataset)
+        dataset = get_dataset(args.train_data_path)
     except Exception as e:
         raise
     print(f'data shape: {dataset.get(0).shape}')

@@ -217,7 +217,7 @@ def ddpm_guidance_loss(
 
 def load_burgers_dataset(dataset):
     tmp_dataset = DiffusionDataset(
-        f'/usr/{dataset}/test', # dataset of f varying in both space and time
+        dataset, # dataset of f varying in both space and time
         preprocess=get_burgers_preprocess(
             rescaler=RESCALER, 
             stack_u_and_f=True, 
@@ -231,7 +231,7 @@ def load_burgers_dataset(dataset):
 def get_target(target_i, f=False, device=0, dataset='free_u_f_1e5', **dataset_kwargs):
     # repeating in the first dimension if one target is shared with multiple f
     test_dataset = DiffusionDataset(
-        f'/usr/{dataset}/test', # dataset of f varying in both space and time
+        dataset, # dataset of f varying in both space and time
         preprocess=get_burgers_preprocess(
             rescaler=1., 
             stack_u_and_f=False, 
@@ -314,7 +314,7 @@ def load_2dconv_model(i, args, new=True):
     trainer = Trainer(
         ddpm, 
         dataset, 
-        results_folder=f"/usr/trained_models/{i}/", 
+        results_folder=f"{args.diffusion_model_path}/{i}/", 
         train_num_steps=args.train_num_steps, 
         save_and_sample_every=args.checkpoint_interval, 
     )
@@ -331,7 +331,7 @@ def load_2dconv_model_w(args):
     trainer = Trainer(
         ddpm, 
         dataset, 
-        results_folder=f"/usr/trained_models/{args.exp_id__model_w}/", 
+        results_folder=f"{args.diffusion_model_path}/{args.exp_id__model_w}/", 
         train_num_steps=args.train_num_steps__model_w, 
         save_and_sample_every=args.checkpoint__model_w, 
     )

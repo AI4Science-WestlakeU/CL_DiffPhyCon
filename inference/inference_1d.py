@@ -25,8 +25,10 @@ parser.add_argument('--save_file', default='burgers_results/result_zerowf.yaml',
                     help='file to save')
 parser.add_argument('--eval_save', default='eval', type=str,
                     help='file to save')
-parser.add_argument('--dataset', default='free_u_f_1e5_seed0', type=str,
+parser.add_argument('--dataset', default='/data', type=str,
                     help='dataset name for evaluation (eval samples drawn from)')
+parser.add_argument('--test_target', default='/target', type=str,
+                    help='test target path')
 parser.add_argument('--model_str', default='', type=str,
                     help='description (where is this used?)')
 
@@ -124,7 +126,7 @@ parser.add_argument('--asynch_inference_mode', action='store_true',
 parser.add_argument('--is_init_model', default=True, type=bool, 
                     help="if true, the original DDPM, if False, ours new.")
 
-parser.add_argument('--diffusion_model_path', default="/usr", type=str,
+parser.add_argument('--diffusion_model_path', default="/trained_models", type=str,
                         help='directory of trained diffusion model (Unet) for initialization of close loop control')
 
 # loss, guidance and utils
@@ -179,7 +181,7 @@ def diffuse_2dconv(args, custom_metric, model_i, model_f, seed=0, ret_ls=False, 
     u0_from_x = lambda x: x[:, 0, 0, :]
     f_from_x = lambda x: x[:, 1, :15, :]
     
-    db = torch.load(f'/usr/{args.dataset}/test')
+    db = torch.load(args.test_target)
     target_step = db['u'][-50:].cuda()*0.1
     
     torch.manual_seed(seed)
