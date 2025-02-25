@@ -28,7 +28,7 @@ Run the following commands to install dependencies. In particular, the Python ve
 
 ```code
 conda env create -f environment.yml
-conda activate DiffPhyCon
+conda activate base
 ```
 
 # Dataset and checkpoints
