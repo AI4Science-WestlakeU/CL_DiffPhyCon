@@ -67,7 +67,7 @@ In the scripts_2d/ folder, run the following script for closed-loop diffusion co
 bash inf_asyn.sh
 ```
 
-Then run evaluate_2d.py to evaluate the inference results (also modify the data path variable "root" first)
+Then in the inference/ folder, run evaluate_2d.py to evaluate the inference results (also modify the data path variable "root" first)
 ```
 python evaluate_2d.py
 ```
