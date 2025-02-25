@@ -20,10 +20,10 @@ def evaluate(root, folder, n_sim=50):
         final_smoke_out = smoke[-1]
         all_smoke_out.append(final_smoke_out)
     avg_smoke_out = np.mean(all_smoke_out, axis=0)
-    print(n_sim, folder, ", avg_smoke_out: ", avg_smoke_out, ", J: ", 1-avg_smoke_out, "\n")
+    print(n_sim, folder, ", control objective J: ", 1-avg_smoke_out, "\n")
 
 if __name__ == '__main__':
-    root = "/data/close_loop_diffcon/phiflow/"
+    root = "/data/cl_diffphycon/2d"
     n_sim = 50
     all_folders = os.listdir(os.path.join(root, "inference_results"))
     all_folders.sort()

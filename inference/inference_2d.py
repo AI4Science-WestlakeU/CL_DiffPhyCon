@@ -16,7 +16,7 @@ sys.path.append(os.path.join(os.path.dirname("__file__"), '..', '..'))
 from dataset.data_2d import Smoke
 from diffusion.diffusion_2d import GaussianDiffusion, Trainer, Simulator
 from dataset.apps.evaluate_solver import *
-import multiprocess as mp
+from model.video_diffusion_pytorch_conv3d import Unet3D_with_Conv3D
 
 class solver_env():
     def __init__(self):
@@ -84,7 +84,6 @@ def guidance_fn(x, RESCALER, w_energy=0):
     return grad_x
 
 def create_model(args):
-    from model.video_diffusion_pytorch_conv3d import Unet3D_with_Conv3D
     model = Unet3D_with_Conv3D(
         dim = 64,
         dim_mults = (1, 2, 4),
@@ -213,14 +212,6 @@ class InferencePipeline(object):
         if self.random_sim: # different env (locations of inner obstacles) for different sim_id
             self.random_obstacle_array = np.load(os.path.join(self.args_general.dataset_path, "test", "random_obstacle.npy")) # shape: [100, 5, 2]
         self.RESCALER = RESCALER.to(self.device)
-        self.simulator = Simulator(
-                                    dim = args_general.image_size,
-                                    out_dim = 4,
-                                    dim_mults = (1, 2, 4),
-                                    channels = 6
-        )
-        self.simulator.to(self.device)
-        self.simulator.load_state_dict(torch.load(args_general.surrogate_model_path))
 
         if not os.path.exists(self.results_path):
             os.makedirs(self.results_path)

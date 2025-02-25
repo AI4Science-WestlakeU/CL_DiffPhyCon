@@ -1,9 +1,8 @@
-data_path="/data/closed_loop_diffcon/phiflow"
-train_results_folder="$syn_cond_d_v_s"
+data_path="/data/cl_diffphycon/2d"
 accelerate launch --config_file default_config.yaml \
 --main_process_port 29500 \
---gpu_ids 6,7 \
+--gpu_ids 0,1 \
 ../train/train_2d.py \
---results_path "${data_path}/checkpoints/${train_results_folder}" \
+--results_path "${data_path}/checkpoints/syn_models" \
 --dataset_path ${data_path} \
 --is_synch_model

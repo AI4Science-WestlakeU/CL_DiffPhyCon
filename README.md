@@ -24,7 +24,7 @@ This is a follow-up work of our previous DiffPhyCon (NeurIPS 2024): [Paper](http
 
 # Installation
 
-Run the following commonds to install dependencies. In particular, when run the smoke control task, the python version must be 3.8 due to the requirement of the Phiflow software.
+Run the following commands to install dependencies. In particular, the Python version must be 3.8 when running the 2D smoke control task, as the Phiflow software requires.
 
 ```code
 conda env create -f environment.yml
@@ -33,7 +33,7 @@ conda activate DiffPhyCon
 
 # Dataset and checkpoints
 ## Dataset
-The checkpoints and test datasets of our CL-DiffPhyCon on both tasks (1D Burgers and 2D smoke) can be downloaded in [link](https://drive.google.com/drive/folders/1moLdtqmvmAU8FoWt6ELWOTXT0tPuY-qJ). To run the following training and inference scripts locally, replace the path names in the following scripts by your local paths.
+The training and testing datasets and checkpoints of our CL-DiffPhyCon on both tasks (1D Burgers control and 2D smoke control) can be downloaded in [link](https://drive.google.com/drive/folders/1moLdtqmvmAU8FoWt6ELWOTXT0tPuY-qJ). To run the following training and inference scripts locally, replace the path names in the following scripts with your local paths.
 <!-- Because the training dataset in the 2D experiment is over 100GB, it is not contained in this link. -->
 
 # Training:
@@ -47,7 +47,7 @@ bash train_asyn.sh
 
 ## 2D Smoke Control:
 
-Similarly, in the scripts_2d/ folder, run the following two scripts:
+In the scripts_2d/ folder, modify the configs in the file default_config.yaml and the argument "main_process_port" and "gpu_ids" according to your local GPU environments to run [accelerate](https://pypi.org/project/accelerate/) properly. Then, run the following two scripts to train the two diffusion models, respectively:
 ```code
 bash train_syn.sh
 bash train_asyn.sh
@@ -67,7 +67,7 @@ In the scripts_2d/ folder, run the following script for closed-loop diffusion co
 bash inf_asyn.sh
 ```
 
-And then run evaluate_2d.py to evaluate the inference results
+Then run evaluate_2d.py to evaluate the inference results (also modify the data path variable "root" first)
 ```
 python evaluate_2d.py
 ```
